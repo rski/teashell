@@ -10,3 +10,5 @@ fi
 to your .zshrc/.bashrc
 
 source the shell rc file with source or by logging out and in again
+
+todo: fix the readme
