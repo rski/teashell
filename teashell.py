@@ -28,7 +28,7 @@ def get_britbong_alias(executable):
 def write_to_britbong_alias_file(britbongAliasFile, britbongAliases):
     with open(britbongAliasFile, 'w') as f:
         for alias in britbongAliases:
-            f.write("alias " + alias[0] + "=" + alias[1] + "\n")
+            f.write("alias " + alias[1] + "=" + alias[0] + "\n")
 
 
 if __name__=='__main__':
