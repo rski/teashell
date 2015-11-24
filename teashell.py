@@ -15,14 +15,7 @@ def britbongise(executable):
     executable = re.sub("center", "centre", executable)
     if executable == americlapExecutable: #nothing to britbongise
         return None
-    return executable
-
-
-def get_britbong_alias(executable):
-    alias = britbongise(executable)
-    if alias is None:
-        return []
-    return [(executable, alias)]
+    return [(executable, americlapExecutable)]
 
 
 def write_to_britbong_alias_file(britbongAliasFile, britbongAliases):
@@ -35,7 +28,6 @@ if __name__=='__main__':
     ospath = os.environ['PATH']
     ospathlist = ospath.split(':')
 
-    print ("DOWN WITH THE YANKS")
     britbongAliasFile = join(os.environ['HOME'], ".britbongaliases")
 
     #print (ospathlist)
@@ -45,10 +37,8 @@ if __name__=='__main__':
         executables = executables + [f for f in listdir(path) if isfile(join(path,f)) ]
     #print (executables)
 
-    britbongAliases = []
-    for executable in executables:
-        britbongAliases = britbongAliases + get_britbong_alias(executable)
+    britbongAliases = map(britbongise, executables)
+    britbongAliases = [x for x in britbongAliases if x is not None]
 
-    write_to_britbong_alias_file(britbongAliasFile, britbongAliases)
-    print (britbongAliases)
-    print ("The yanks got what was coming to them")
+    #write_to_britbong_alias_file(britbongAliasFile, britbongAliases)
+    print (*britbongAliases)
