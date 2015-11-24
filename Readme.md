@@ -1,14 +1,15 @@
 A python3 script to populate a file with british aliases for commands spelled in the american way, eg alias colourdiff=colordiff
 
 How to use:
-run the script
+```
+$ python3 teashell.py
+```
 
-append 
+append these lines to your shell config file: 
+```
 if [ -f $HOME/.britbongaliases ]; then
   source $HOME/.britbongaliases
 fi
-to your .zshrc/.bashrc
+```
 
-source the shell rc file with source or by logging out and in again
-
-todo: fix the readme
+Source the shell config file or log out and in again.
