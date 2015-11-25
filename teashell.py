@@ -2,7 +2,7 @@
 
 import os
 from os import listdir
-from os.path import isfile, join
+from os.path import isdir, isfile, join
 import re
 
 
@@ -12,9 +12,8 @@ def britbongise(executable):
     executable = re.sub("color", "colour", executable)
     executable = re.sub("theater", "theatre", executable)
     executable = re.sub("center", "centre", executable)
-    if executable == americlapExecutable: #nothing to britbongise
-        return None
-    return [(executable, americlapExecutable)]
+    if executable != americlapExecutable:
+        return [(executable, americlapExecutable)]
 
 
 def write_aliases(britbongAliases):
@@ -30,7 +29,8 @@ if __name__=='__main__':
 
     executables = []
     for path in ospathlist:
-        executables = executables + [f for f in listdir(path) if isfile(join(path,f)) ]
+        if isdir(path):
+            executables = executables + [f for f in listdir(path) if isfile(join(path,f)) ]
 
     britbongAliases = map(britbongise, executables)
     britbongAliases = [x for x in britbongAliases if x is not None]
